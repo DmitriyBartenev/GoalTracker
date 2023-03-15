@@ -73,10 +73,10 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {
 		reset: (state) => {
-			(state.isLoading = false),
-				(state.isSuccess = false),
-				(state.isError = false),
-				(state.message = '');
+			state.isLoading = false;
+			state.isSuccess = false;
+			state.isError = false;
+			state.message = '';
 		},
 	},
 	extraReducers: (builder) => {
@@ -99,15 +99,15 @@ export const authSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(login.fulfilled, (state, action) => {
-				(state.isLoading = false),
-					(state.isSuccess = true),
-					(state.user = action.payload);
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.user = action.payload;
 			})
 			.addCase(login.rejected, (state, action) => {
-				(state.isLoading = false),
-					(state.isError = true),
-					(state.message = action.payload),
-					(state.user = null);
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+				state.user = null;
 			})
 			.addCase(logout.fulfilled, (state) => {
 				state.user = null;
