@@ -1,11 +1,8 @@
 import React from 'react';
+import RegisterForm from '../components/Form/RegisterForm';
 
 const Register: React.FC = () => {
-	return (
-		<div>
-			<h1>Register</h1>
-		</div>
-	);
+	return <RegisterForm />;
 };
 
 export default Register;
