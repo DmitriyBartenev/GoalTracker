@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { StyledHeader, StyledContainer } from './styles';
 
@@ -7,8 +8,8 @@ const Header: React.FC = () => {
 		<StyledHeader>
 			<h1>Header</h1>
 			<StyledContainer>
-				<span>Login</span>
-				<span>Register</span>
+				<Link to="/login">Login</Link>
+				<Link to="/register">Register</Link>
 			</StyledContainer>
 		</StyledHeader>
 	);

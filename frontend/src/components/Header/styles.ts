@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
 `
 
 export const StyledContainer = styled.div`
-    span:last-child{
+    a:last-child{
         margin-left: 10px;
     }
 `
