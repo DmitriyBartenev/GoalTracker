@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout, reset } from '../../features/auth/authSlice';
 
-import { StyledHeader, StyledContainer } from './styles';
+import { StyledHeader, StyledContainer, StyledLogout } from './styles';
 
 const Header: React.FC = () => {
 	const navigate = useNavigate();
@@ -21,11 +21,19 @@ const Header: React.FC = () => {
 			<h1>Header</h1>
 			<StyledContainer>
 				{user ? (
-					<span onClick={onLogout}>Logout</span>
+					<>
+						<span>{user.name}</span>
+						<StyledLogout onClick={onLogout}>Logout</StyledLogout>
+					</>
 				) : (
 					<>
-						<Link to="/login">Login</Link>
-						<Link to="/register">Register</Link>
+						<NavLink
+							to="/login"
+							className={(props) => (props.isActive ? 'active' : '')}
+						>
+							Login
+						</NavLink>
+						<NavLink to="/register">Register</NavLink>
 					</>
 				)}
 			</StyledContainer>

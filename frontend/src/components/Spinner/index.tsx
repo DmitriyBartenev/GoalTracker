@@ -6,7 +6,7 @@ const SpinnerAnimation = keyframes`
 `;
 
 const StyledSpinner = styled.div`
-	display: inline-block;
+	margin: 0 auto;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
