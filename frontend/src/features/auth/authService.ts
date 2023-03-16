@@ -1,12 +1,7 @@
 import axios from 'axios';
+import { UserData } from '../../types';
 
 const API_URL = '/api/users/';
-
-type UserData = {
-	name?: string;
-	email: string;
-	password: string;
-};
 
 //Register User
 const register = async (userData: UserData) => {

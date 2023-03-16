@@ -1,23 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
+import { UserData } from '../../types';
 
 // Get User from localstorage
 const userJson = localStorage.getItem('user');
 const user: UserData = userJson ? JSON.parse(userJson) : null;
 
-type UserData = {
-	name?: string;
-	email: string;
-	password: string;
-};
-
-type SliceState = {
+interface SliceState {
 	user: UserData | null;
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
 	message: string | unknown;
-};
+}
 
 const initialState: SliceState = {
 	user: user ? user : null,
