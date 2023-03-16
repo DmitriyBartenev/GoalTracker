@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-import { UserData } from '../../types';
+import { IUserData } from '../../types';
 
 // Get User from localstorage
 const userJson = localStorage.getItem('user');
-const user: UserData = userJson ? JSON.parse(userJson) : null;
+const user: IUserData = userJson ? JSON.parse(userJson) : null;
 
 interface SliceState {
-	user: UserData | null;
+	user: IUserData | null;
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
@@ -26,7 +26,7 @@ const initialState: SliceState = {
 
 export const register = createAsyncThunk(
 	'auth/register',
-	async (user: UserData, thunkAPI) => {
+	async (user: IUserData, thunkAPI) => {
 		try {
 			return await authService.register(user);
 		} catch (error: any) {
@@ -44,7 +44,7 @@ export const register = createAsyncThunk(
 // Login User
 export const login = createAsyncThunk(
 	'auth/login',
-	async (user: UserData, thunkAPI) => {
+	async (user: IUserData, thunkAPI) => {
 		try {
 			return await authService.login(user);
 		} catch (error: any) {

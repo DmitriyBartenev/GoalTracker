@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import goalService from './goalService';
-import { GoalItem } from '../../types';
+import { IGoalItem, INewGoalItem } from '../../types';
 
 interface GoalSlice {
-	goals: GoalItem[];
+	goals: IGoalItem[];
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
@@ -21,7 +21,7 @@ const initialState: GoalSlice = {
 // Create new goal
 export const createGoal = createAsyncThunk(
 	'goals/create',
-	async (goalData: GoalItem, thunkAPI: any) => {
+	async (goalData: INewGoalItem, thunkAPI: any) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
 			return await goalService.createGoal(goalData, token);
@@ -116,7 +116,7 @@ export const goalSlice = createSlice({
 				state.isLoading = false;
 				state.isSuccess = true;
 				state.goals = state.goals.filter(
-					(goal: GoalItem) => goal._id !== action.payload.id
+					(goal: IGoalItem) => goal._id !== action.payload.id
 				);
 			})
 			.addCase(deleteGoal.rejected, (state, action) => {

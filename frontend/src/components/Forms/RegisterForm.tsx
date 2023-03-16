@@ -7,7 +7,7 @@ import { AuthInput } from '../ui/AuthInput';
 import { SubmitButton } from '../ui/SubmitButton';
 import { Spinner } from '../Spinner';
 
-import { StyledForm } from './styles';
+import { StyledAuthForm } from './styles';
 
 interface Input {
 	name: string;
@@ -73,7 +73,7 @@ const RegisterForm: React.FC = () => {
 	}
 
 	return (
-		<StyledForm onSubmit={onSubmit}>
+		<StyledAuthForm onSubmit={onSubmit}>
 			<h4>Register</h4>
 			<p>Register and start setting goals</p>
 			<AuthInput
@@ -104,8 +104,8 @@ const RegisterForm: React.FC = () => {
 				value={repeatPassword}
 				onChange={onChange}
 			/>
-			<SubmitButton />
-		</StyledForm>
+			<SubmitButton title="Register" />
+		</StyledAuthForm>
 	);
 };
 

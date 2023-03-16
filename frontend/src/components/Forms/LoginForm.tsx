@@ -7,7 +7,7 @@ import { SubmitButton } from '../ui/SubmitButton';
 import { AuthInput } from '../ui/AuthInput';
 import { Spinner } from '../Spinner';
 
-import { StyledForm } from './styles';
+import { StyledAuthForm } from './styles';
 
 interface InputValue {
 	email: string;
@@ -64,7 +64,7 @@ const LoginForm: React.FC = () => {
 	};
 
 	return (
-		<StyledForm onSubmit={onSubmit}>
+		<StyledAuthForm onSubmit={onSubmit}>
 			<h4>Login</h4>
 			<p>Login and start setting goals</p>
 			<AuthInput
@@ -81,8 +81,8 @@ const LoginForm: React.FC = () => {
 				name="password"
 				onChange={onChange}
 			/>
-			<SubmitButton />
-		</StyledForm>
+			<SubmitButton title="Login" />
+		</StyledAuthForm>
 	);
 };
 

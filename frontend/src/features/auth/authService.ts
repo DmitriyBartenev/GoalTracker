@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { UserData } from '../../types';
+import { IUserData } from '../../types';
 
 const API_URL = '/api/users/';
 
 //Register User
-const register = async (userData: UserData) => {
+const register = async (userData: IUserData) => {
 	const response = await axios.post(API_URL, userData);
 
 	if (response.data) {
@@ -14,7 +14,7 @@ const register = async (userData: UserData) => {
 	return response.data;
 };
 
-const login = async (userData: UserData) => {
+const login = async (userData: IUserData) => {
 	const response = await axios.post(API_URL + 'login', userData);
 
 	if (response.data) {

@@ -2,8 +2,26 @@ import React from 'react';
 
 import { StyledGoalInput } from './styles';
 
-const GoalInput: React.FC = () => {
-	return <StyledGoalInput type="text" />;
-};
+interface GoalInputProps {
+	placeholder: string;
+	name: string;
+	value: string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export default GoalInput;
+export const GoalInput: React.FC<GoalInputProps> = ({
+	placeholder,
+	name,
+	value,
+	onChange,
+}) => {
+	return (
+		<StyledGoalInput
+			type="text"
+			placeholder={placeholder}
+			name={name}
+			value={value}
+			onChange={onChange}
+		/>
+	);
+};

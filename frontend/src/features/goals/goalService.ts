@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { GoalItem } from '../../types';
+import { INewGoalItem } from '../../types';
 
-const API_URL = '/api/goals';
+const API_URL = '/api/goals/';
 
 // Create New Goal
-const createGoal = async (goalData: GoalItem, token: string) => {
+const createGoal = async (goalData: INewGoalItem, token: string) => {
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,

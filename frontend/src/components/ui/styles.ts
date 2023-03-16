@@ -6,7 +6,7 @@ export const StyledSubmitButton = styled.button`
 	width: 100%;
 	background-color: ${colors.black};
 	border: solid 1px ${colors.black};
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 500;
 	letter-spacing: 1px;
 	padding: 6px 0px;
@@ -38,4 +38,5 @@ export const StyledAuthInput = styled.input`
 export const StyledGoalInput = styled.input`
 	width: 100%;
 	padding: 2px 12px;
+	margin: 12px 0;
 `;

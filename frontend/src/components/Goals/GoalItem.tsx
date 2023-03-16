@@ -1,16 +1,25 @@
 import React from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { deleteGoal } from '../../features/goals/goalSlice';
+
+import { IGoalItem } from '../../types';
+
 import { StyledGoalItem } from './styles';
 
-interface GoalItemProps {
-	text: string;
-}
+const GoalItem: React.FC<IGoalItem> = ({
+	title,
+	createdAt,
+	description,
+	_id,
+}) => {
+	const dispatch = useAppDispatch();
 
-const GoalItem: React.FC<GoalItemProps> = ({ text }) => {
 	return (
 		<StyledGoalItem>
-			<h3>{text}</h3>
-			<span>Date</span>
-			<p>Description</p>
+			<h3>{title}</h3>
+			<p>{description}</p>
+			<span>{new Date(createdAt).toLocaleString('en-US')}</span>
+			<button onClick={() => dispatch(deleteGoal(_id))}>X</button>
 		</StyledGoalItem>
 	);
 };
