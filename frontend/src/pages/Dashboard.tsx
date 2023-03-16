@@ -14,9 +14,9 @@ const Dashboard: React.FC = () => {
 	}, [user, navigate]);
 
 	return (
-		<div>
-			<h1>Dashboard</h1>
-		</div>
+		<section>
+			<h1>Welcome {user && user.name}</h1>
+		</section>
 	);
 };
 

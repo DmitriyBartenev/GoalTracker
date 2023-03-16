@@ -21,10 +21,7 @@ const Header: React.FC = () => {
 			<h1>Header</h1>
 			<StyledContainer>
 				{user ? (
-					<>
-						<span>{user.name}</span>
-						<StyledLogout onClick={onLogout}>Logout</StyledLogout>
-					</>
+					<StyledLogout onClick={onLogout}>Logout</StyledLogout>
 				) : (
 					<>
 						<NavLink
