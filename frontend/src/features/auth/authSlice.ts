@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-import { IUserData } from '../../types';
+import { IUserData } from '../../models/IUser';
 
 // Get User from localstorage
 const userJson = localStorage.getItem('user');

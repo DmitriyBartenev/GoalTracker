@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { deleteGoal } from '../../features/goals/goalSlice';
 
-import { IGoalItem } from '../../types';
+import { IGoalItem } from '../../models/IGoal';
 
 import { StyledGoalItem } from './styles';
 

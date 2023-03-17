@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { IUserData } from '../../types';
+import { IUserData } from '../../models/IUser';
 
 const API_URL = '/api/users/';
 
-//Register User
+// Register User
 const register = async (userData: IUserData) => {
 	const response = await axios.post(API_URL, userData);
 
@@ -14,6 +14,7 @@ const register = async (userData: IUserData) => {
 	return response.data;
 };
 
+// Login User
 const login = async (userData: IUserData) => {
 	const response = await axios.post(API_URL + 'login', userData);
 

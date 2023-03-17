@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INewGoalItem } from '../../types';
+import { IGoalItem, INewGoalItem } from '../../models/IGoal';
 
 const API_URL = '/api/goals/';
 
@@ -10,7 +10,7 @@ const createGoal = async (goalData: INewGoalItem, token: string) => {
 			Authorization: `Bearer ${token}`,
 		},
 	};
-	const response = await axios.post(API_URL, goalData, config);
+	const response = await axios.post<INewGoalItem>(API_URL, goalData, config);
 
 	return response.data;
 };
@@ -23,7 +23,7 @@ const getGoals = async (token: string) => {
 		},
 	};
 
-	const response = await axios.get(API_URL, config);
+	const response = await axios.get<IGoalItem[]>(API_URL, config);
 
 	return response.data;
 };
@@ -36,7 +36,7 @@ const deleteGoal = async (goalId: string, token: string) => {
 		},
 	};
 
-	const response = await axios.delete(API_URL + goalId, config);
+	const response = await axios.delete<IGoalItem>(API_URL + goalId, config);
 
 	return response.data;
 };
