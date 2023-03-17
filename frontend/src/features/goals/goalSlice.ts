@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import goalService from './goalService';
-import { IGoalItem, INewGoalItem } from '../../models/IGoal';
+import { IGoalItem, INewGoalItem } from '../../types';
 
 interface GoalSlice {
 	goals: IGoalItem[];
@@ -86,14 +86,11 @@ export const goalSlice = createSlice({
 			.addCase(createGoal.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(
-				createGoal.fulfilled,
-				(state, action: PayloadAction<IGoalItem>) => {
-					state.isLoading = false;
-					state.isSuccess = true;
-					state.goals.push(action.payload);
-				}
-			)
+			.addCase(createGoal.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.goals.push(action.payload);
+			})
 			.addCase(createGoal.rejected, (state, action) => {
 				state.isError = true;
 				state.isLoading = false;
@@ -102,14 +99,11 @@ export const goalSlice = createSlice({
 			.addCase(getGoals.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(
-				getGoals.fulfilled,
-				(state, action: PayloadAction<IGoalItem[]>) => {
-					state.isLoading = false;
-					state.isSuccess = true;
-					state.goals = action.payload;
-				}
-			)
+			.addCase(getGoals.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.goals = action.payload;
+			})
 			.addCase(getGoals.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
@@ -118,16 +112,13 @@ export const goalSlice = createSlice({
 			.addCase(deleteGoal.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(
-				deleteGoal.fulfilled,
-				(state, action: PayloadAction<IGoalItem>) => {
-					state.isLoading = false;
-					state.isSuccess = true;
-					state.goals = state.goals.filter(
-						(goal: IGoalItem) => goal._id !== action.payload._id
-					);
-				}
-			)
+			.addCase(deleteGoal.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.goals = state.goals.filter(
+					(goal: IGoalItem) => goal._id !== action.payload.id
+				);
+			})
 			.addCase(deleteGoal.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
