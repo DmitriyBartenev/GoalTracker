@@ -34,17 +34,13 @@ const GoalsDashboard: React.FC = () => {
 		};
 	}, [user, navigate, dispatch, isError, message]);
 
-	if (isLoading) {
-		return <Spinner />;
-	}
-
 	return (
 		<StyledDashboard>
-			<h1>Welcome {user && user.name}</h1>
-			<h3>This is your Goals Dashboard</h3>
 			<GoalCreator />
 			<StyledGoalsContainer>
-				{goals.length > 0 ? (
+				{isLoading ? (
+					<Spinner />
+				) : goals.length > 0 ? (
 					goals.map((item) => <GoalItem key={item._id} {...item} />)
 				) : (
 					<h3>Start to set your goals </h3>

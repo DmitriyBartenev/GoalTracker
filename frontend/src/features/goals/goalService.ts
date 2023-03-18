@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INewGoalItem } from '../../types';
+import { INewGoalItem } from '../../models/IGoal';
 
 const API_URL = '/api/goals/';
 

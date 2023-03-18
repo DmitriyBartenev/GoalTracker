@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createGoal } from '../../features/goals/goalSlice';
 
 import { GoalInput } from '../ui/GoalInput';
@@ -19,6 +19,8 @@ const GoalForm: React.FC = () => {
 	});
 
 	const dispatch = useAppDispatch();
+
+	const { user } = useAppSelector((state) => state.auth);
 
 	const { title, description } = formData;
 
@@ -42,6 +44,8 @@ const GoalForm: React.FC = () => {
 
 	return (
 		<StyledGoalForm onSubmit={onSubmit}>
+			<h1>Welcome {user && user.name}</h1>
+			<h3>This is your Goals Dashboard</h3>
 			<GoalInput
 				placeholder="Your Goal Title"
 				name="title"

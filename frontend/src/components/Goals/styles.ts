@@ -16,6 +16,10 @@ export const StyledGoalsContainer = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
+	h3 {
+		width: 100%;
+		text-align: center;
+	}
 `;
 
 export const StyledGoalItem = styled.div`
