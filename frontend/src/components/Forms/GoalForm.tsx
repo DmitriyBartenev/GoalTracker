@@ -18,14 +18,14 @@ const GoalForm: React.FC = () => {
 		description: '',
 	});
 
+	const { title, description } = formData;
+
 	const dispatch = useAppDispatch();
 
 	const {
 		auth: { user },
 		goals: { onCreateLoading },
 	} = useAppSelector((state) => state);
-
-	const { title, description } = formData;
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData((prevState) => ({

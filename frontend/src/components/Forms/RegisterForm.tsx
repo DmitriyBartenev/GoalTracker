@@ -5,7 +5,6 @@ import { register, reset } from '../../features/auth/authSlice';
 
 import { AuthInput } from '../ui/AuthInput';
 import { AuthButton } from '../ui/AuthButton';
-import { Spinner } from '../Spinner';
 
 import { StyledAuthForm } from './styles';
 
@@ -68,10 +67,6 @@ const RegisterForm: React.FC = () => {
 		}
 	};
 
-	if (isLoading) {
-		return <Spinner />;
-	}
-
 	return (
 		<StyledAuthForm onSubmit={onSubmit}>
 			<h4>Register</h4>
@@ -104,7 +99,7 @@ const RegisterForm: React.FC = () => {
 				value={repeatPassword}
 				onChange={onChange}
 			/>
-			<AuthButton title="Register" />
+			<AuthButton title="Register" isLoading={isLoading} />
 		</StyledAuthForm>
 	);
 };

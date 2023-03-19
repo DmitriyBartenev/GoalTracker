@@ -51,6 +51,7 @@ export const StyledGoalButton = styled.button`
 	font-size: 16px;
 	transition: 0.2s;
 	cursor: pointer;
+	margin-top: 12px;
 	:hover {
 		background-color: ${colors.black};
 		color: ${colors.white};

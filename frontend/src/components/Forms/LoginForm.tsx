@@ -5,7 +5,6 @@ import { login, reset } from '../../features/auth/authSlice';
 
 import { AuthButton } from '../ui/AuthButton';
 import { AuthInput } from '../ui/AuthInput';
-import { Spinner } from '../Spinner';
 
 import { StyledAuthForm } from './styles';
 
@@ -57,10 +56,6 @@ const LoginForm: React.FC = () => {
 		};
 
 		dispatch(login(userData));
-
-		if (isLoading) {
-			return <Spinner />;
-		}
 	};
 
 	return (
@@ -81,7 +76,7 @@ const LoginForm: React.FC = () => {
 				name="password"
 				onChange={onChange}
 			/>
-			<AuthButton title="Login" />
+			<AuthButton title="Login" isLoading={isLoading} />
 		</StyledAuthForm>
 	);
 };
