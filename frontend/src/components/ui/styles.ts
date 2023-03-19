@@ -4,6 +4,7 @@ import { colors } from '../../styles/colors';
 
 export const StyledSubmitButton = styled.button`
 	width: 100%;
+	height: 36px;
 	background-color: ${colors.black};
 	border: solid 1px ${colors.black};
 	font-size: 16px;
@@ -44,6 +45,7 @@ export const StyledGoalInput = styled.input`
 export const StyledGoalButton = styled.button`
 	background-color: ${colors.white};
 	width: 100%;
+	height: 32px;
 	border: solid 1px ${colors.black};
 	padding: 4px 12px;
 	border-radius: 4px;
