@@ -40,3 +40,19 @@ export const StyledGoalInput = styled.input`
 	padding: 2px 12px;
 	margin: 12px 0;
 `;
+
+export const StyledGoalButton = styled.button`
+	background-color: ${colors.white};
+	width: 100%;
+	border: solid 1px ${colors.black};
+	padding: 4px 12px;
+	border-radius: 4px;
+	color: ${colors.black};
+	font-size: 16px;
+	transition: 0.2s;
+	cursor: pointer;
+	:hover {
+		background-color: ${colors.black};
+		color: ${colors.white};
+	}
+`;

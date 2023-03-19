@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { login, reset } from '../../features/auth/authSlice';
 
-import { SubmitButton } from '../ui/SubmitButton';
+import { AuthButton } from '../ui/AuthButton';
 import { AuthInput } from '../ui/AuthInput';
 import { Spinner } from '../Spinner';
 
@@ -81,7 +81,7 @@ const LoginForm: React.FC = () => {
 				name="password"
 				onChange={onChange}
 			/>
-			<SubmitButton title="Login" />
+			<AuthButton title="Login" />
 		</StyledAuthForm>
 	);
 };

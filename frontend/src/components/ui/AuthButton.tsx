@@ -6,6 +6,6 @@ interface SubmitButtonProps {
 	title: string;
 }
 
-export const SubmitButton: React.FC<SubmitButtonProps> = ({ title }) => {
+export const AuthButton: React.FC<SubmitButtonProps> = ({ title }) => {
 	return <StyledSubmitButton>{title}</StyledSubmitButton>;
 };

@@ -7,6 +7,7 @@ interface GoalSlice {
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
+	onCreateLoading: boolean;
 	message: string | unknown;
 }
 
@@ -15,6 +16,7 @@ const initialState: GoalSlice = {
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
+	onCreateLoading: false,
 	message: '',
 };
 
@@ -89,11 +91,16 @@ export const goalSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			.addCase(createGoal.pending, (state) => {
+				state.onCreateLoading = true;
+			})
 			.addCase(createGoal.fulfilled, (state, action) => {
 				state.isSuccess = true;
+				state.onCreateLoading = false;
 				state.goals.push(action.payload);
 			})
 			.addCase(createGoal.rejected, (state, action) => {
+				state.onCreateLoading = false;
 				state.isError = true;
 				state.message = action.payload;
 			})

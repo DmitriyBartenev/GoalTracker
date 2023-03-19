@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createGoal } from '../../features/goals/goalSlice';
 
 import { GoalInput } from '../ui/GoalInput';
-import { SubmitButton } from '../ui/SubmitButton';
+import { GoalButton } from '../ui/GoalButton';
 
 import { StyledGoalForm } from './styles';
 
@@ -20,7 +20,10 @@ const GoalForm: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const { user } = useAppSelector((state) => state.auth);
+	const {
+		auth: { user },
+		goals: { onCreateLoading },
+	} = useAppSelector((state) => state);
 
 	const { title, description } = formData;
 
@@ -58,7 +61,7 @@ const GoalForm: React.FC = () => {
 				value={description}
 				onChange={onChange}
 			/>
-			<SubmitButton title="Create" />
+			<GoalButton title="Create" onCreateLoading={onCreateLoading} />
 		</StyledGoalForm>
 	);
 };

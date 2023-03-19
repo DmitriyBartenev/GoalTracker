@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { register, reset } from '../../features/auth/authSlice';
 
 import { AuthInput } from '../ui/AuthInput';
-import { SubmitButton } from '../ui/SubmitButton';
+import { AuthButton } from '../ui/AuthButton';
 import { Spinner } from '../Spinner';
 
 import { StyledAuthForm } from './styles';
@@ -104,7 +104,7 @@ const RegisterForm: React.FC = () => {
 				value={repeatPassword}
 				onChange={onChange}
 			/>
-			<SubmitButton title="Register" />
+			<AuthButton title="Register" />
 		</StyledAuthForm>
 	);
 };
