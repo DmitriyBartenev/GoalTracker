@@ -1,4 +1,4 @@
-export interface IGoalItem {
+export interface IGoal {
 	_id: string;
 	user: string;
 	title: string;
@@ -7,7 +7,7 @@ export interface IGoalItem {
 	updatedAt: string;
 }
 
-export interface INewGoalItem {
+export interface INewGoal {
 	title: string;
 	description?: string;
 }

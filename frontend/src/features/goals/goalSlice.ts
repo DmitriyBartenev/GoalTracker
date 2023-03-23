@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import goalService from './goalService';
-import { IGoalItem, INewGoalItem } from '../../models/IGoal';
+import { IGoal, INewGoal } from '../../models/IGoal';
 
 interface GoalSlice {
-	goals: IGoalItem[];
+	goals: IGoal[];
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
@@ -23,7 +23,7 @@ const initialState: GoalSlice = {
 // Create new goal
 export const createGoal = createAsyncThunk(
 	'goals/create',
-	async (goalData: INewGoalItem, thunkAPI: any) => {
+	async (goalData: INewGoal, thunkAPI: any) => {
 		try {
 			if (thunkAPI.getState().auth.user) {
 				const token = thunkAPI.getState().auth.user.token;
@@ -94,7 +94,7 @@ export const goalSlice = createSlice({
 			.addCase(createGoal.pending, (state) => {
 				state.onCreateLoading = true;
 			})
-			.addCase(createGoal.fulfilled, (state, action) => {
+			.addCase(createGoal.fulfilled, (state, action: PayloadAction<IGoal>) => {
 				state.isSuccess = true;
 				state.onCreateLoading = false;
 				state.goals.push(action.payload);
@@ -107,7 +107,7 @@ export const goalSlice = createSlice({
 			.addCase(getGoals.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(getGoals.fulfilled, (state, action) => {
+			.addCase(getGoals.fulfilled, (state, action: PayloadAction<IGoal[]>) => {
 				state.isLoading = false;
 				state.isSuccess = true;
 				state.goals = action.payload;
@@ -117,10 +117,10 @@ export const goalSlice = createSlice({
 				state.isError = true;
 				state.message = action.payload;
 			})
-			.addCase(deleteGoal.fulfilled, (state, action) => {
+			.addCase(deleteGoal.fulfilled, (state, action: PayloadAction<IGoal>) => {
 				state.isSuccess = true;
 				state.goals = state.goals.filter(
-					(goal: IGoalItem) => goal._id !== action.payload.id
+					(goal: IGoal) => goal._id !== action.payload._id
 				);
 			})
 			.addCase(deleteGoal.rejected, (state, action) => {

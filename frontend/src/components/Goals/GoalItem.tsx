@@ -2,16 +2,11 @@ import React from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { deleteGoal } from '../../features/goals/goalSlice';
 
-import { IGoalItem } from '../../models/IGoal';
+import { IGoal } from '../../models/IGoal';
 
 import { StyledGoalItem } from './styles';
 
-const GoalItem: React.FC<IGoalItem> = ({
-	title,
-	createdAt,
-	description,
-	_id,
-}) => {
+const GoalItem: React.FC<IGoal> = ({ title, createdAt, description, _id }) => {
 	const dispatch = useAppDispatch();
 
 	return (
