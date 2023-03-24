@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INewGoal } from '../../models/IGoal';
+import { IGoal, INewGoal } from '../../models/IGoal';
 
 const API_URL = '/api/goals/';
 
@@ -41,10 +41,23 @@ const deleteGoal = async (goalId: string, token: string) => {
 	return response.data;
 };
 
+const updateGoal = async (goalData: IGoal, token: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.put(API_URL + goalData._id, goalData, config);
+
+	return response.data;
+};
+
 const goalService = {
 	createGoal,
 	getGoals,
 	deleteGoal,
+	updateGoal,
 };
 
 export default goalService;

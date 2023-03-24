@@ -24,7 +24,7 @@ const GoalForm: React.FC = () => {
 
 	const {
 		auth: { user },
-		goals: { onCreateLoading },
+		goals: { isCreatedLoading },
 	} = useAppSelector((state) => state);
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +61,7 @@ const GoalForm: React.FC = () => {
 				value={description}
 				onChange={onChange}
 			/>
-			<GoalButton title="Create" onCreateLoading={onCreateLoading} />
+			<GoalButton title="Create" isCreatedLoading={isCreatedLoading} />
 		</StyledGoalForm>
 	);
 };

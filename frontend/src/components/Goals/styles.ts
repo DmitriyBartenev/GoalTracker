@@ -30,15 +30,36 @@ export const StyledGoalItem = styled.div`
 	margin: 0 12px;
 	position: relative;
 	button {
-		font-weight: 900;
-		position: absolute;
-		right: 10px;
-		top: 10px;
 		cursor: pointer;
 		background-color: transparent;
 		border: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		svg {
+			stroke: ${colors.black};
+		}
 	}
+`;
+
+export const StyledDeleteButton = styled.button`
+	position: absolute;
+	right: 10px;
+	top: 10px;
+`;
+
+export const StyledEditButton = styled.button`
+	position: absolute;
+	left: 10px;
+	top: 10px;
+`;
+
+export const StyledEditForm = styled.form`
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+`;
+
+export const StyledEditSubmitButton = styled.button`
+	border-bottom: 1px solid ${colors.black};
 `;

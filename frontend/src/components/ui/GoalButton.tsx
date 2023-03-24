@@ -6,16 +6,16 @@ import { StyledGoalButton } from './styles';
 
 interface GoalButtonProps {
 	title: string;
-	onCreateLoading: boolean;
+	isCreatedLoading: boolean;
 }
 
 export const GoalButton: React.FC<GoalButtonProps> = ({
 	title,
-	onCreateLoading,
+	isCreatedLoading,
 }) => {
 	return (
-		<StyledGoalButton disabled={onCreateLoading}>
-			{onCreateLoading ? <Spinner /> : title}
+		<StyledGoalButton disabled={isCreatedLoading}>
+			{isCreatedLoading ? <Spinner /> : title}
 		</StyledGoalButton>
 	);
 };

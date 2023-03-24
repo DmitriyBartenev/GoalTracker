@@ -7,7 +7,8 @@ interface GoalSlice {
 	isError: boolean;
 	isSuccess: boolean;
 	isLoading: boolean;
-	onCreateLoading: boolean;
+	isCreatedLoading: boolean;
+	isUpdatedLoading: boolean;
 	message: string | unknown;
 }
 
@@ -16,7 +17,8 @@ const initialState: GoalSlice = {
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
-	onCreateLoading: false,
+	isCreatedLoading: false,
+	isUpdatedLoading: false,
 	message: '',
 };
 
@@ -83,6 +85,26 @@ export const deleteGoal = createAsyncThunk(
 	}
 );
 
+export const updateGoal = createAsyncThunk(
+	'goals/update',
+	async (goalData: IGoal, thunkAPI: any) => {
+		try {
+			if (thunkAPI.getState().auth.user) {
+				const token = thunkAPI.getState().auth.user.token;
+				return await goalService.updateGoal(goalData, token);
+			}
+		} catch (error: any) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const goalSlice = createSlice({
 	name: 'goals',
 	initialState,
@@ -92,15 +114,15 @@ export const goalSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(createGoal.pending, (state) => {
-				state.onCreateLoading = true;
+				state.isCreatedLoading = true;
 			})
 			.addCase(createGoal.fulfilled, (state, action: PayloadAction<IGoal>) => {
 				state.isSuccess = true;
-				state.onCreateLoading = false;
+				state.isCreatedLoading = false;
 				state.goals.push(action.payload);
 			})
 			.addCase(createGoal.rejected, (state, action) => {
-				state.onCreateLoading = false;
+				state.isCreatedLoading = false;
 				state.isError = true;
 				state.message = action.payload;
 			})
@@ -124,6 +146,29 @@ export const goalSlice = createSlice({
 				);
 			})
 			.addCase(deleteGoal.rejected, (state, action) => {
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(updateGoal.pending, (state) => {
+				state.isUpdatedLoading = true;
+			})
+			.addCase(updateGoal.fulfilled, (state, action: PayloadAction<IGoal>) => {
+				const updatedGoal = action.payload;
+				const index = state.goals.findIndex(
+					(goal: IGoal) => goal._id === updatedGoal._id
+				);
+				if (index !== -1) {
+					state.goals[index] = updatedGoal;
+					state.isSuccess = true;
+					state.isUpdatedLoading = false;
+				} else {
+					state.isUpdatedLoading = false;
+					state.isError = true;
+					state.message = `Goal with id ${updatedGoal._id} not found`;
+				}
+			})
+			.addCase(updateGoal.rejected, (state, action) => {
+				state.isCreatedLoading = false;
 				state.isError = true;
 				state.message = action.payload;
 			});
