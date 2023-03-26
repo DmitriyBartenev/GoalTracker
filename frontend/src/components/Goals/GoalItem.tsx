@@ -28,6 +28,7 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 	});
 
 	const dispatch = useAppDispatch();
+
 	const { isUpdatedLoading } = useAppSelector((state) => state.goals);
 
 	const onEditGoal = () => {
