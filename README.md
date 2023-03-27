@@ -10,7 +10,7 @@
   <li>Goal progress tracking</li>
   <li>Responsive UI</li>
 </ul>
-<h3>Technologies useed</h3>
+<h3>Technologies used</h3>
 <ul>
   <li>MongoDB: A NoSQL database used for data storage.</li>
   <li>Express: A flexible and minimalist web application framework used for building web applications.</li>
