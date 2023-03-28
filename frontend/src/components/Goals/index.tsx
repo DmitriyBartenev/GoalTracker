@@ -24,7 +24,7 @@ const GoalsDashboard: React.FC = () => {
 			navigate('/login');
 		}
 		if (isError) {
-			console.log(message);
+			console.log('Oops...error' + message);
 		}
 
 		dispatch(getGoals());
