@@ -19,6 +19,11 @@ export const StyledGoalsContainer = styled.div`
 	h3 {
 		width: 100%;
 		text-align: center;
+		font-size: 18px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 24px;
 	}
 `;
 
@@ -55,11 +60,29 @@ export const StyledEditButton = styled.button`
 `;
 
 export const StyledEditForm = styled.form`
+	height: 100%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-`;
-
-export const StyledEditSubmitButton = styled.button`
-	border-bottom: 1px solid ${colors.black};
+	input {
+		height: 24px;
+		text-align: center;
+		width: 100%;
+		color: ${colors.black};
+		background-color: ${colors.lightGray};
+		border: none;
+		border-bottom: solid 1px ${colors.black};
+		outline: none;
+		::placeholder {
+			opacity: 0.5;
+		}
+		:first-child {
+			font-weight: 700;
+			font-size: 18px;
+		}
+		:last-child {
+			font-weight: 400;
+			font-size: 16px;
+		}
+	}
 `;

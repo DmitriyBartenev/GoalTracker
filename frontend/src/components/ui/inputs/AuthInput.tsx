@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledAuthInput } from './styles';
+import { StyledAuthInput } from '../styles';
 
 interface AuthInputProps {
 	placeholder: string;

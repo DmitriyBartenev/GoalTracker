@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Spinner } from '../Spinner';
+import { Spinner } from '../../Spinner';
 
-import { StyledGoalButton } from './styles';
+import { StyledGoalButton } from '../styles';
 
 interface GoalButtonProps {
 	title: string;

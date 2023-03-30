@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createGoal } from '../../features/goals/goalSlice';
 
-import { GoalInput } from '../ui/GoalInput';
-import { GoalButton } from '../ui/GoalButton';
+import { GoalInput } from '../ui/inputs/GoalInput';
+import { GoalButton } from '../ui/buttons/GoalButton';
 
 import { StyledGoalForm } from './styles';
 

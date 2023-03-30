@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledGoalInput } from './styles';
+import { StyledGoalInput } from '../styles';
 
 interface GoalInputProps {
 	placeholder: string;

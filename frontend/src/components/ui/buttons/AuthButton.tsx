@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Spinner } from '../Spinner';
+import { Spinner } from '../../Spinner';
 
-import { StyledSubmitButton } from './styles';
+import { StyledSubmitButton } from '../styles';
 
 interface SubmitButtonProps {
 	title: string;

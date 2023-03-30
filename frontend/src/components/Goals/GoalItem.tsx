@@ -11,11 +11,11 @@ import {
 	StyledDeleteButton,
 	StyledEditButton,
 	StyledEditForm,
-	StyledEditSubmitButton,
 } from './styles';
 
 import { CloseIcon } from '../ui/icons/CloseIcon';
 import { EditIcon } from '../ui/icons/EditIcon';
+import { CheckIcon } from '../ui/icons/CheckIcon';
 import { Spinner } from '../Spinner';
 
 const GoalItem: React.FC<IGoal> = (goal) => {
@@ -37,11 +37,18 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 			title: formValue.title,
 			description: formValue.description,
 		};
-		setEdit(false);
 
-		if (editGoal.title) {
+		if (editGoal.title === title && editGoal.description === description) {
+			setEdit(false);
+		} else if (editGoal.title) {
 			dispatch(updateGoal(editGoal));
+			setEdit(false);
 		}
+	};
+
+	const onDeleteGoal = () => {
+		dispatch(deleteGoal(_id));
+		setEdit(false);
 	};
 
 	return (
@@ -51,6 +58,7 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 					<input
 						type="text"
 						value={formValue.title}
+						placeholder="Goal Title"
 						onChange={(e) =>
 							setFormValue({ ...formValue, title: e.target.value })
 						}
@@ -58,13 +66,11 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 					<input
 						type="text"
 						value={formValue.description}
+						placeholder="Goal Description"
 						onChange={(e) =>
 							setFormValue({ ...formValue, description: e.target.value })
 						}
 					/>
-					<StyledEditSubmitButton onClick={onEditGoal} type="submit">
-						Save
-					</StyledEditSubmitButton>
 				</StyledEditForm>
 			) : isUpdatedLoading ? (
 				<Spinner />
@@ -78,8 +84,8 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 			<StyledEditButton onClick={() => setEdit(!edit)}>
 				<EditIcon />
 			</StyledEditButton>
-			<StyledDeleteButton onClick={() => dispatch(deleteGoal(_id))}>
-				<CloseIcon />
+			<StyledDeleteButton onClick={edit ? onEditGoal : onDeleteGoal}>
+				{edit ? <CheckIcon /> : <CloseIcon />}
 			</StyledDeleteButton>
 		</StyledGoalItem>
 	);

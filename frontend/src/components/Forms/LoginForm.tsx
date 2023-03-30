@@ -3,8 +3,8 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { login, reset } from '../../features/auth/authSlice';
 
-import { AuthButton } from '../ui/AuthButton';
-import { AuthInput } from '../ui/AuthInput';
+import { AuthButton } from '../ui/buttons/AuthButton';
+import { AuthInput } from '../ui/inputs/AuthInput';
 
 import { StyledAuthForm } from './styles';
 

@@ -23,6 +23,7 @@ const GoalsDashboard: React.FC = () => {
 		if (!user) {
 			navigate('/login');
 		}
+
 		if (isError) {
 			console.log('Oops...error' + message);
 		}
