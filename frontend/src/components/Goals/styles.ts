@@ -14,8 +14,10 @@ export const StyledGoalsContainer = styled.div`
 	width: 100%;
 	margin-top: 60px;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 10px;
 	h3 {
 		width: 100%;
 		text-align: center;
@@ -32,7 +34,6 @@ export const StyledGoalItem = styled.div`
 	width: 240px;
 	padding: 12px 24px;
 	border-radius: 5px;
-	margin: 0 12px;
 	position: relative;
 	button {
 		cursor: pointer;

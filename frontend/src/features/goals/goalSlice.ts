@@ -157,18 +157,17 @@ export const goalSlice = createSlice({
 				const index = state.goals.findIndex(
 					(goal: IGoal) => goal._id === updatedGoal._id
 				);
+				state.isUpdatedLoading = false;
 				if (index !== -1) {
 					state.goals[index] = updatedGoal;
 					state.isSuccess = true;
-					state.isUpdatedLoading = false;
 				} else {
-					state.isUpdatedLoading = false;
 					state.isError = true;
 					state.message = `Goal with id ${updatedGoal._id} not found`;
 				}
 			})
 			.addCase(updateGoal.rejected, (state, action) => {
-				state.isCreatedLoading = false;
+				state.isUpdatedLoading = false;
 				state.isError = true;
 				state.message = action.payload;
 			});
