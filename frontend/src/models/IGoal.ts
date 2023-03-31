@@ -5,6 +5,7 @@ export interface IGoal {
 	description?: string;
 	createdAt: string;
 	updatedAt: string;
+	isLoading?: boolean;
 }
 
 export interface INewGoal {

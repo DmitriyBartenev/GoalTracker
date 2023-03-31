@@ -29,14 +29,14 @@ const getGoals = async (token: string) => {
 };
 
 // Delete User Goal
-const deleteGoal = async (goalId: string, token: string) => {
+const deleteGoal = async (goalData: IGoal, token: string) => {
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
 	};
 
-	const response = await axios.delete(API_URL + goalId, config);
+	const response = await axios.delete(API_URL + goalData._id, config);
 
 	return response.data;
 };

@@ -8,7 +8,6 @@ interface GoalSlice {
 	isSuccess: boolean;
 	isLoading: boolean;
 	isCreatedLoading: boolean;
-	isUpdatedLoading: boolean;
 	message: string | unknown;
 }
 
@@ -18,7 +17,6 @@ const initialState: GoalSlice = {
 	isSuccess: false,
 	isLoading: false,
 	isCreatedLoading: false,
-	isUpdatedLoading: false,
 	message: '',
 };
 
@@ -67,11 +65,11 @@ export const getGoals = createAsyncThunk(
 // Delete User Goal
 export const deleteGoal = createAsyncThunk(
 	'goals/delete',
-	async (id: string, thunkAPI: any) => {
+	async (goalData: IGoal, thunkAPI: any) => {
 		try {
 			if (thunkAPI.getState().auth.user) {
 				const token = thunkAPI.getState().auth.user.token;
-				return await goalService.deleteGoal(id, token);
+				return await goalService.deleteGoal(goalData, token);
 			}
 		} catch (error: any) {
 			const message =
@@ -139,37 +137,61 @@ export const goalSlice = createSlice({
 				state.isError = true;
 				state.message = action.payload;
 			})
-			.addCase(deleteGoal.fulfilled, (state, action) => {
-				state.isSuccess = true;
-				state.goals = state.goals.filter(
-					(goal: IGoal) => goal._id !== action.payload.id
+			.addCase(deleteGoal.pending, (state, action) => {
+				const goalToDelete = state.goals.find(
+					(goal: IGoal) => goal._id === action.meta.arg._id
 				);
+				if (goalToDelete) {
+					goalToDelete.isLoading = true;
+				}
+			})
+			.addCase(deleteGoal.fulfilled, (state, action) => {
+				const goalToDelete = action.payload;
+				if (goalToDelete) {
+					state.goals = state.goals.filter(
+						(goal: IGoal) => goal._id !== action.payload.id
+					);
+					goalToDelete.isLoading = false;
+				}
 			})
 			.addCase(deleteGoal.rejected, (state, action) => {
-				state.isError = true;
-				state.message = action.payload;
+				const goalToDelete = state.goals.find(
+					(goal: IGoal) => goal._id === action.meta.arg._id
+				);
+				if (goalToDelete) {
+					goalToDelete.isLoading = false;
+					state.isError = true;
+					state.message = action.payload;
+				}
 			})
-			.addCase(updateGoal.pending, (state) => {
-				state.isUpdatedLoading = true;
+			.addCase(updateGoal.pending, (state, action) => {
+				const goalToUpdate = state.goals.find(
+					(goal: IGoal) => goal._id === action.meta.arg._id
+				);
+				if (goalToUpdate) {
+					goalToUpdate.isLoading = true;
+				}
 			})
 			.addCase(updateGoal.fulfilled, (state, action: PayloadAction<IGoal>) => {
 				const updatedGoal = action.payload;
-				const index = state.goals.findIndex(
+				const goalToUpdateIndex = state.goals.findIndex(
 					(goal: IGoal) => goal._id === updatedGoal._id
 				);
-				state.isUpdatedLoading = false;
-				if (index !== -1) {
-					state.goals[index] = updatedGoal;
+				if (goalToUpdateIndex !== -1) {
+					state.goals[goalToUpdateIndex] = updatedGoal;
+					state.goals[goalToUpdateIndex].isLoading = false;
 					state.isSuccess = true;
-				} else {
-					state.isError = true;
-					state.message = `Goal with id ${updatedGoal._id} not found`;
 				}
 			})
 			.addCase(updateGoal.rejected, (state, action) => {
-				state.isUpdatedLoading = false;
-				state.isError = true;
-				state.message = action.payload;
+				const goalToUpdateIndex = state.goals.findIndex(
+					(goal: IGoal) => goal._id === action.meta.arg._id
+				);
+				if (goalToUpdateIndex !== -1) {
+					state.goals[goalToUpdateIndex].isLoading = false;
+					state.isError = true;
+					state.message = action.payload;
+				}
 			});
 	},
 });

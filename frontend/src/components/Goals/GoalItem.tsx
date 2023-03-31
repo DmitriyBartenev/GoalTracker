@@ -29,7 +29,12 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 
 	const dispatch = useAppDispatch();
 
-	const { isUpdatedLoading } = useAppSelector((state) => state.goals);
+	const { isUpdatedLoading } = useAppSelector((state) => {
+		const goalToUpdate = state.goals.goals.find(
+			(goal: IGoal) => goal._id === _id
+		);
+		return { isUpdatedLoading: goalToUpdate?.isLoading };
+	});
 
 	const onEditGoal = () => {
 		const editGoal = {
@@ -47,7 +52,7 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 	};
 
 	const onDeleteGoal = () => {
-		dispatch(deleteGoal(_id));
+		dispatch(deleteGoal(goal));
 		setEdit(false);
 	};
 
