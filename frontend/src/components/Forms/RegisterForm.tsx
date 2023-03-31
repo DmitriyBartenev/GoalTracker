@@ -3,8 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { register, reset } from '../../features/auth/authSlice';
 
-import { AuthInput } from '../ui/inputs/AuthInput';
-import { AuthButton } from '../ui/buttons/AuthButton';
+import { uiButtons, uiInputs } from '../ui';
 
 import { StyledAuthForm } from './styles';
 
@@ -23,6 +22,8 @@ const RegisterForm: React.FC = () => {
 		repeatPassword: '',
 	});
 
+	const { AuthButton } = uiButtons;
+	const { AuthInput } = uiInputs;
 	const { name, email, password, repeatPassword } = formData;
 
 	const navigate = useNavigate();

@@ -13,9 +13,7 @@ import {
 	StyledEditForm,
 } from './styles';
 
-import { CloseIcon } from '../ui/icons/CloseIcon';
-import { EditIcon } from '../ui/icons/EditIcon';
-import { CheckIcon } from '../ui/icons/CheckIcon';
+import { icons } from '../ui/icons';
 import { Spinner } from '../Spinner';
 
 const GoalItem: React.FC<IGoal> = (goal) => {
@@ -27,6 +25,7 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 		description: description,
 	});
 
+	const { CheckIcon, CloseIcon, EditIcon } = icons;
 	const dispatch = useAppDispatch();
 
 	const { isUpdatedLoading } = useAppSelector((state) => {

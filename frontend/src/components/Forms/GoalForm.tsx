@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createGoal } from '../../features/goals/goalSlice';
 
-import { GoalInput } from '../ui/inputs/GoalInput';
-import { GoalButton } from '../ui/buttons/GoalButton';
+import { uiInputs, uiButtons } from '../ui';
 
 import { StyledGoalForm } from './styles';
 
@@ -18,6 +17,8 @@ const GoalForm: React.FC = () => {
 		description: '',
 	});
 
+	const { GoalInput } = uiInputs;
+	const { GoalButton } = uiButtons;
 	const { title, description } = formData;
 
 	const dispatch = useAppDispatch();
