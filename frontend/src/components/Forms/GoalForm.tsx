@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createGoal } from '../../features/goals/goalSlice';
+
+import { INewGoalInputs } from '../../models/IInputs';
+import { goalValidationSchema } from '../../validators/validationSchema';
 
 import { uiInputs, uiButtons } from '../ui';
 
 import { StyledGoalForm } from './styles';
 
-interface CreateGoalInputs {
-	title: string;
-	description: string;
-}
-
 const GoalForm: React.FC = () => {
-	const [formData, setFormData] = useState<CreateGoalInputs>({
-		title: '',
-		description: '',
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<INewGoalInputs>({
+		resolver: yupResolver(goalValidationSchema),
 	});
 
 	const { GoalInput } = uiInputs;
 	const { GoalButton } = uiButtons;
-	const { title, description } = formData;
 
 	const dispatch = useAppDispatch();
 
@@ -28,39 +31,22 @@ const GoalForm: React.FC = () => {
 		goals: { isCreatedLoading },
 	} = useAppSelector((state) => state);
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData((prevState) => ({
-			...prevState,
-			[e.target.name]: e.target.value,
-		}));
-	};
-
-	const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		dispatch(createGoal(formData));
-
-		setFormData({
-			title: '',
-			description: '',
-		});
+	const onSubmit: SubmitHandler<INewGoalInputs> = (data: INewGoalInputs) => {
+		dispatch(createGoal(data));
+		reset();
 	};
 
 	return (
-		<StyledGoalForm onSubmit={onSubmit}>
+		<StyledGoalForm onSubmit={handleSubmit(onSubmit)}>
 			<h1>Welcome {user && user.name}</h1>
 			<h3>This is your Goals Dashboard</h3>
 			<GoalInput
 				placeholder="Your Goal Title"
-				name="title"
-				value={title}
-				onChange={onChange}
+				register={{ ...register('title') }}
 			/>
 			<GoalInput
 				placeholder="Your Goal Description (optional)"
-				name="description"
-				value={description}
-				onChange={onChange}
+				register={{ ...register('description') }}
 			/>
 			<GoalButton title="Create" isCreatedLoading={isCreatedLoading} />
 		</StyledGoalForm>

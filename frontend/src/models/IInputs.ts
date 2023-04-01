@@ -1,4 +1,4 @@
-export interface IEditInput {
+export interface INewGoalInputs {
 	title: string;
-	description?: string;
+	description: string;
 }

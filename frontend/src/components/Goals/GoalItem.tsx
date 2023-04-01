@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { deleteGoal, updateGoal } from '../../features/goals/goalSlice';
 
 import { IGoal } from '../../models/IGoal';
-import { IEditInput } from '../../models/IInputs';
+import { INewGoal } from '../../models/IGoal';
 
 import {
 	StyledGoalItem,
@@ -20,7 +20,7 @@ const GoalItem: React.FC<IGoal> = (goal) => {
 	const { title, createdAt, description, _id } = goal;
 
 	const [edit, setEdit] = useState<boolean>(false);
-	const [formValue, setFormValue] = useState<IEditInput>({
+	const [formValue, setFormValue] = useState<INewGoal>({
 		title: title,
 		description: description,
 	});

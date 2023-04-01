@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import goalService from './goalService';
+import goalService from '../../services/goalService';
 import { IGoal, INewGoal } from '../../models/IGoal';
 
 interface GoalSlice {

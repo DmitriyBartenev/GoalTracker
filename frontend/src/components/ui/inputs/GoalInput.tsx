@@ -1,27 +1,18 @@
 import React from 'react';
+import { FieldValues } from 'react-hook-form/dist/types';
 
 import { StyledGoalInput } from '../styles';
 
 interface GoalInputProps {
 	placeholder: string;
-	name: string;
-	value: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	register: FieldValues;
 }
 
 export const GoalInput: React.FC<GoalInputProps> = ({
 	placeholder,
-	name,
-	value,
-	onChange,
+	register,
 }) => {
 	return (
-		<StyledGoalInput
-			type="text"
-			placeholder={placeholder}
-			name={name}
-			value={value}
-			onChange={onChange}
-		/>
+		<StyledGoalInput type="text" placeholder={placeholder} {...register} />
 	);
 };

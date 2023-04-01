@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
 	return (
 		<StyledHeader>
-			<h1>Header</h1>
+			<h1>GoalTracker</h1>
 			<StyledContainer>
 				{user ? (
 					<StyledLogout onClick={onLogout}>Logout</StyledLogout>

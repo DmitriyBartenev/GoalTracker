@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IUser } from '../../models/IUser';
+import { IUser } from '../models/IUser';
 
 const API_URL = '/api/users/';
 
