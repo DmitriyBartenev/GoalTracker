@@ -43,10 +43,12 @@ const GoalForm: React.FC = () => {
 			<GoalInput
 				placeholder="Your Goal Title"
 				register={{ ...register('title') }}
+				error={errors.title?.message}
 			/>
 			<GoalInput
 				placeholder="Your Goal Description (optional)"
 				register={{ ...register('description') }}
+				error={errors.description?.message}
 			/>
 			<GoalButton title="Create" isCreatedLoading={isCreatedLoading} />
 		</StyledGoalForm>
