@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import React, { useEffect } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { login, reset } from '../../features/auth/authSlice';
+
+import { ILoginInputs } from '../../models/IInputs';
+import { loginUser, resetAuthState } from '../../features/auth/authSlice';
+import { loginValidationSchema } from '../../validators/validationSchema';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { uiButtons, uiInputs } from '../ui';
 
 import { StyledAuthForm } from './styles';
 
-interface InputValue {
-	email: string;
-	password: string;
-}
-
 const LoginForm: React.FC = () => {
-	const [formData, setFormData] = useState<InputValue>({
-		email: '',
-		password: '',
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<ILoginInputs>({
+		resolver: yupResolver(loginValidationSchema),
 	});
 
 	const { AuthButton } = uiButtons;
-	const { AuthInput } = uiInputs;
-	const { email, password } = formData;
+	const { LoginInput } = uiInputs;
 
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
@@ -38,44 +41,27 @@ const LoginForm: React.FC = () => {
 			navigate('/');
 		}
 
-		dispatch(reset());
+		dispatch(resetAuthState());
 	}, [user, isError, isSuccess, message, navigate, dispatch]);
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData((prevState) => ({
-			...prevState,
-			[e.target.name]: e.target.value,
-		}));
-	};
-
-	const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		const userData: InputValue = {
-			email,
-			password,
-		};
-
-		dispatch(login(userData));
+	const onSubmit: SubmitHandler<ILoginInputs> = (data: ILoginInputs) => {
+		dispatch(loginUser(data));
+		reset();
 	};
 
 	return (
-		<StyledAuthForm onSubmit={onSubmit}>
+		<StyledAuthForm onSubmit={handleSubmit(onSubmit)}>
 			<h4>Login</h4>
 			<p>Login and start setting goals</p>
-			<AuthInput
+			<LoginInput
 				placeholder="Enter your email"
 				type="text"
-				value={email}
-				name="email"
-				onChange={onChange}
+				register={{ ...register('email') }}
 			/>
-			<AuthInput
+			<LoginInput
 				placeholder="Enter password"
 				type="password"
-				value={password}
-				name="password"
-				onChange={onChange}
+				register={{ ...register('password') }}
 			/>
 			<AuthButton title="Login" isLoading={isLoading} />
 		</StyledAuthForm>

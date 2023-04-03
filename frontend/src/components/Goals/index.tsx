@@ -41,7 +41,7 @@ const GoalsDashboard: React.FC = () => {
 			<StyledGoalsContainer>
 				{isLoading ? (
 					<Spinner />
-				) : goals.length > 0 ? (
+				) : goals?.length > 0 ? (
 					goals.map((item) => <GoalItem key={item._id} {...item} />)
 				) : (
 					<h3>Start to set your goals </h3>

@@ -1,10 +1,12 @@
 import { AuthButton } from './buttons/AuthButton';
 import { GoalButton } from './buttons/GoalButton';
-import { AuthInput } from './inputs/AuthInput';
+import { RegisterInput } from './inputs/RegisterInput';
+import { LoginInput } from './inputs/LoginInput';
 import { GoalInput } from './inputs/GoalInput';
 
 export const uiInputs = {
-	AuthInput,
+	RegisterInput,
+	LoginInput,
 	GoalInput,
 };
 

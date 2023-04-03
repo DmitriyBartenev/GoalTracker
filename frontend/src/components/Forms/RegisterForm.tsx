@@ -1,30 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import React, { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { register, reset } from '../../features/auth/authSlice';
+
+import { IRegisterInputs } from '../../models/IInputs';
+import { registerUser, resetAuthState } from '../../features/auth/authSlice';
+import { registerValidationSchema } from '../../validators/validationSchema';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { uiButtons, uiInputs } from '../ui';
 
 import { StyledAuthForm } from './styles';
 
-interface Input {
-	name: string;
-	email: string;
-	password: string;
-	repeatPassword: string;
-}
-
 const RegisterForm: React.FC = () => {
-	const [formData, setFormData] = useState<Input>({
-		name: '',
-		email: '',
-		password: '',
-		repeatPassword: '',
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<IRegisterInputs>({
+		resolver: yupResolver(registerValidationSchema),
 	});
 
 	const { AuthButton } = uiButtons;
-	const { AuthInput } = uiInputs;
-	const { name, email, password, repeatPassword } = formData;
+	const { RegisterInput } = uiInputs;
 
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
@@ -42,63 +41,37 @@ const RegisterForm: React.FC = () => {
 			navigate('/');
 		}
 
-		dispatch(reset());
+		dispatch(resetAuthState());
 	}, [user, isError, isSuccess, message, navigate, dispatch]);
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData((prevState) => ({
-			...prevState,
-			[e.target.name]: e.target.value,
-		}));
-	};
-
-	const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		if (password !== repeatPassword) {
-			throw new Error('Passwords mismatch');
-		} else {
-			const userData = {
-				name,
-				email,
-				password,
-			};
-
-			dispatch(register(userData));
-		}
+	const onSubmit: SubmitHandler<IRegisterInputs> = (data: IRegisterInputs) => {
+		dispatch(registerUser(data));
+		reset();
 	};
 
 	return (
-		<StyledAuthForm onSubmit={onSubmit}>
+		<StyledAuthForm onSubmit={handleSubmit(onSubmit)}>
 			<h4>Register</h4>
 			<p>Register and start setting goals</p>
-			<AuthInput
+			<RegisterInput
 				placeholder="Enter your name"
 				type="text"
-				name="name"
-				value={name}
-				onChange={onChange}
+				register={{ ...register('name') }}
 			/>
-			<AuthInput
+			<RegisterInput
 				placeholder="Enter your email"
 				type="text"
-				name="email"
-				value={email}
-				onChange={onChange}
+				register={{ ...register('email') }}
 			/>
-			<AuthInput
+			<RegisterInput
 				placeholder="Enter password"
 				type="password"
-				name="password"
-				value={password}
-				onChange={onChange}
+				register={{ ...register('password') }}
 			/>
-			<AuthInput
+			<RegisterInput
 				placeholder="Repeat password"
 				type="password"
-				name="repeatPassword"
-				value={repeatPassword}
-				onChange={onChange}
+				register={{ ...register('repeatPassword') }}
 			/>
 			<AuthButton title="Register" isLoading={isLoading} />
 		</StyledAuthForm>

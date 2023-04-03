@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { logout, reset } from '../../features/auth/authSlice';
+import { logoutUser, resetAuthState } from '../../features/auth/authSlice';
 
 import { StyledHeader, StyledContainer, StyledLogout } from './styles';
 
@@ -11,8 +11,8 @@ const Header: React.FC = () => {
 	const { user } = useAppSelector((state) => state.auth);
 
 	const onLogout = () => {
-		dispatch(logout());
-		dispatch(reset());
+		dispatch(logoutUser());
+		dispatch(resetAuthState());
 		navigate('/');
 	};
 
