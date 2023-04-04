@@ -57,11 +57,13 @@ const LoginForm: React.FC = () => {
 				placeholder="Enter your email"
 				type="text"
 				register={{ ...register('email') }}
+				errors={errors.email?.message}
 			/>
 			<LoginInput
 				placeholder="Enter password"
 				type="password"
 				register={{ ...register('password') }}
+				errors={errors.password?.message}
 			/>
 			<AuthButton title="Login" isLoading={isLoading} />
 		</StyledAuthForm>

@@ -7,14 +7,21 @@ interface RegisterInputProps {
 	placeholder: string;
 	type: string;
 	register: FieldValues;
+	errors?: string;
 }
 
 export const RegisterInput: React.FC<RegisterInputProps> = ({
 	placeholder,
 	type,
 	register,
+	errors,
 }) => {
 	return (
-		<StyledAuthInput type={type} placeholder={placeholder} {...register} />
+		<StyledAuthInput
+			type={type}
+			placeholder={placeholder}
+			{...register}
+			errors={errors}
+		/>
 	);
 };

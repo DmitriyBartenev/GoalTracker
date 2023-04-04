@@ -57,21 +57,25 @@ const RegisterForm: React.FC = () => {
 				placeholder="Enter your name"
 				type="text"
 				register={{ ...register('name') }}
+				errors={errors.name?.message}
 			/>
 			<RegisterInput
 				placeholder="Enter your email"
 				type="text"
 				register={{ ...register('email') }}
+				errors={errors.email?.message}
 			/>
 			<RegisterInput
 				placeholder="Enter password"
 				type="password"
 				register={{ ...register('password') }}
+				errors={errors.password?.message}
 			/>
 			<RegisterInput
 				placeholder="Repeat password"
 				type="password"
 				register={{ ...register('repeatPassword') }}
+				errors={errors.repeatPassword?.message}
 			/>
 			<AuthButton title="Register" isLoading={isLoading} />
 		</StyledAuthForm>

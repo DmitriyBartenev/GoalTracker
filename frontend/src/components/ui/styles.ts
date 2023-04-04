@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import { colors } from '../../styles/colors';
 
+interface AuthInputProps {
+	errors?: string;
+}
+
 export const StyledSubmitButton = styled.button`
 	width: 100%;
 	height: 36px;
@@ -21,7 +25,7 @@ export const StyledSubmitButton = styled.button`
 	}
 `;
 
-export const StyledAuthInput = styled.input`
+export const StyledAuthInput = styled.input<AuthInputProps>`
 	width: 100%;
 	padding: 6px 12px;
 	margin: 12px 0;
@@ -34,6 +38,8 @@ export const StyledAuthInput = styled.input`
 		color: ${colors.black};
 		opacity: 0.5;
 	}
+	box-shadow: ${({ errors }) =>
+		errors ? '0px 0px 4px 4px rgba(255, 26, 26, 0.2)' : 'none'};
 `;
 
 export const StyledGoalInput = styled.input`
