@@ -19,6 +19,7 @@ export const GoalInput: React.FC<GoalInputProps> = ({
 			type="text"
 			placeholder={error ? error : placeholder}
 			{...register}
+			error={error}
 		/>
 	);
 };

@@ -6,6 +6,10 @@ interface AuthInputProps {
 	errors?: string;
 }
 
+interface GoalInputProps {
+	error: string | undefined;
+}
+
 export const StyledSubmitButton = styled.button`
 	width: 100%;
 	height: 36px;
@@ -42,10 +46,12 @@ export const StyledAuthInput = styled.input<AuthInputProps>`
 		errors ? '0px 0px 4px 4px rgba(255, 26, 26, 0.2)' : 'none'};
 `;
 
-export const StyledGoalInput = styled.input`
+export const StyledGoalInput = styled.input<GoalInputProps>`
 	width: 100%;
 	padding: 2px 12px;
 	margin: 12px 0;
+	box-shadow: ${({ error }) =>
+		error ? '0px 0px 4px 4px rgba(255, 26, 26, 0.2)' : 'none'};
 `;
 
 export const StyledGoalButton = styled.button`
