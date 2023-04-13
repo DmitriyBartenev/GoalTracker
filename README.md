@@ -1,6 +1,6 @@
 <h1>GoalTracker - MERN Stack Application</h1>
 <p>
-    GoalTracker is a web application built with MERN (MongoDB, Express, React, and Node) stack. The main aim of the application is to help users set their own goals and     maintain them.
+    GoalTracker is a web application built with MERN (MongoDB, Express, React, and Node.js) stack. The main aim of the application is to help users set their own goals and     maintain them.
 </p>
 <h3>Features</h3>
 <ul>
