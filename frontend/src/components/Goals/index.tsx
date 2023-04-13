@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { useNavigate } from 'react-router-dom';
 
 import { getGoals, reset } from '../../features/goals/goalSlice';
 
@@ -11,19 +10,13 @@ import { Spinner } from '../Spinner';
 import { StyledDashboard, StyledGoalsContainer } from './styles';
 
 const GoalsDashboard: React.FC = () => {
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
-	const { user } = useAppSelector((state) => state.auth);
 	const { goals, isError, isLoading, message } = useAppSelector(
 		(state) => state.goals
 	);
 
 	useEffect(() => {
-		if (!user) {
-			navigate('/login');
-		}
-
 		if (isError) {
 			console.log('Oops...error' + message);
 		}
@@ -33,7 +26,7 @@ const GoalsDashboard: React.FC = () => {
 		return () => {
 			dispatch(reset());
 		};
-	}, [user, navigate, dispatch, isError, message]);
+	}, [dispatch, isError, message]);
 
 	return (
 		<StyledDashboard>

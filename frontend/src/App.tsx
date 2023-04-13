@@ -1,20 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from './app/hooks';
+
 import Header from './components/Header/Header';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import AppRouter from './router/AppRouter';
 
 const App: React.FC = () => {
+	const { user } = useAppSelector((state) => state.auth);
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!user) {
+			navigate('/login');
+		}
+		//eslint-disable-next-line
+	}, [user]);
+
 	return (
-		<Router>
+		<>
 			<Header />
-			<Routes>
-				<Route path="/" element={<Dashboard />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-			</Routes>
-		</Router>
+			<AppRouter />
+		</>
 	);
 };
 

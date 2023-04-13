@@ -17,7 +17,7 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<StyledHeader>
+		<StyledHeader data-testid="header">
 			<h1>GoalTracker</h1>
 			<StyledContainer>
 				{user ? (
