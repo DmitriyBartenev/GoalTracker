@@ -5,7 +5,7 @@ import { createGoal } from '../../features/goals/goalSlice';
 
 import { INewGoalInputs } from '../../models/IInputs';
 import { goalValidationSchema } from '../../validators/validationSchema';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { uiInputs, uiButtons } from '../ui';
 

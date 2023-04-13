@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ILoginInputs } from '../../models/IInputs';
 import { loginUser, resetAuthState } from '../../features/auth/authSlice';
 import { loginValidationSchema } from '../../validators/validationSchema';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 
 import { uiButtons, uiInputs } from '../ui';
 

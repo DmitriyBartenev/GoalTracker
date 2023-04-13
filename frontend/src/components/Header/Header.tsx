@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { logoutUser, resetAuthState } from '../../features/auth/authSlice';
 
 import { StyledHeader, StyledContainer, StyledLogout } from './styles';

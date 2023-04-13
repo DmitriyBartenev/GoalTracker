@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { deleteGoal, updateGoal } from '../../features/goals/goalSlice';
 
 import { IGoal } from '../../models/IGoal';
