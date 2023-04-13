@@ -14,6 +14,8 @@ export const AuthButton: React.FC<SubmitButtonProps> = ({
 	isLoading,
 }) => {
 	return (
-		<StyledSubmitButton>{isLoading ? <Spinner /> : title}</StyledSubmitButton>
+		<StyledSubmitButton data-testid="submit">
+			{isLoading ? <Spinner /> : title}
+		</StyledSubmitButton>
 	);
 };
