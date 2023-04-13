@@ -13,4 +13,19 @@ describe('Router Test', () => {
 		expect(emailInput).toBeInTheDocument();
 		expect(passwordInput).toBeInTheDocument();
 	});
+	test('Should render Header and Register', () => {
+		render(renderWithRouter(['/register']));
+
+		const headerElement = screen.getByTestId('header');
+		const nameInput = screen.getByPlaceholderText('Enter your name');
+		const emailInput = screen.getByPlaceholderText('Enter your email');
+		const passwordInput = screen.getByPlaceholderText('Enter password');
+		const repeatPassword = screen.getByPlaceholderText('Repeat password');
+
+		expect(headerElement).toBeInTheDocument();
+		expect(nameInput).toBeInTheDocument();
+		expect(emailInput).toBeInTheDocument();
+		expect(passwordInput).toBeInTheDocument();
+		expect(repeatPassword).toBeInTheDocument();
+	});
 });
