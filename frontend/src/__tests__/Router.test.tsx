@@ -3,7 +3,7 @@ import { renderWithRouter } from './helpers/renderWithRouter';
 
 describe('Router Test', () => {
 	test('Should render Header and Login', () => {
-		render(renderWithRouter(['/login']));
+		renderWithRouter(['/login']);
 
 		const headerElement = screen.getByTestId('header');
 		const emailInput = screen.getByPlaceholderText('Enter your email');
@@ -14,7 +14,7 @@ describe('Router Test', () => {
 		expect(passwordInput).toBeInTheDocument();
 	});
 	test('Should render Header and Register', () => {
-		render(renderWithRouter(['/register']));
+		renderWithRouter(['/register']);
 
 		const headerElement = screen.getByTestId('header');
 		const nameInput = screen.getByPlaceholderText('Enter your name');

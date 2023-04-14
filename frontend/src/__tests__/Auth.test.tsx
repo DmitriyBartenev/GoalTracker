@@ -1,10 +1,10 @@
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithRouter } from './helpers/renderWithRouter';
 import { act } from '@testing-library/react';
 
 describe('Authentication Tests', () => {
 	test('Should login user after submit login form', async () => {
-		render(renderWithRouter(['/login']));
+		renderWithRouter(['/login']);
 
 		const emailInput = screen.getByPlaceholderText('Enter your email');
 		const passwordInput = screen.getByPlaceholderText('Enter password');
@@ -26,7 +26,7 @@ describe('Authentication Tests', () => {
 		await waitFor(() => expect(window.location.pathname).toEqual('/'));
 	});
 	test('Should register user after submit register form', async () => {
-		render(renderWithRouter(['/register']));
+		renderWithRouter(['/register']);
 
 		const nameInput = screen.getByPlaceholderText('Enter your name');
 		const emailInput = screen.getByPlaceholderText('Enter your email');
