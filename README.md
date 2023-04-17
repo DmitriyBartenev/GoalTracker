@@ -25,6 +25,7 @@
   <li>React Hook Form: A lightweight library for managing forms in React with an easy-to-use API.</li> 
   <li>Yup: A validation library for JavaScript that offers a simple and declarative API for defining validation rules.</li>
   <li>Jest: A popular JavaScript testing framework developed by Facebook for testing JavaScript code with an emphasis on simplicity and ease of use.</li>
+  <li>React Testing Library: A simple and lightweight testing utility for testing React components, designed to encourage good testing practices and avoid testing implementation details.</li>
 </ul>
 <h3>Installation and Usage</h3>
 <ol>
