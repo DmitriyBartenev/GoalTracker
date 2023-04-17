@@ -24,6 +24,7 @@
   <li>Styled Components: A CSS-in-JS library that allows you to write CSS code as JavaScript components to style React components.</li>
   <li>React Hook Form: A lightweight library for managing forms in React with an easy-to-use API.</li> 
   <li>Yup: A validation library for JavaScript that offers a simple and declarative API for defining validation rules.</li>
+  <li>Jest: A popular JavaScript testing framework developed by Facebook for testing JavaScript code with an emphasis on simplicity and ease of use.</li>
 </ul>
 <h3>Installation and Usage</h3>
 <ol>
