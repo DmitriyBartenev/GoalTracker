@@ -20,7 +20,7 @@
   <li>Mongoose: An Object Data Modeling (ODM) library for MongoDB and Node.js that simplifies the process of defining data models and working with MongoDB in Node.js           applications.
   </li>
   <li>Bcryptjs: A JavaScript library used for secure password hashing and comparison.</li>
-  <li>Redux: A state management library for JavaScript applications that allows you to manage the state of your application in a predictable and scalable way</li>
+  <li>Redux: A state management library for JavaScript applications that allows you to manage the state of your application in a predictable and scalable way.</li>
   <li>Styled Components: A CSS-in-JS library that allows you to write CSS code as JavaScript components to style React components.</li>
   <li>React Hook Form: A lightweight library for managing forms in React with an easy-to-use API.</li> 
   <li>Yup: A validation library for JavaScript that offers a simple and declarative API for defining validation rules.</li>
